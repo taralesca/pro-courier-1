@@ -11,6 +11,7 @@
 
     <modules>
         <module>core-model</module>
+        <module>orders-service</module>
     </modules>
 
     <properties>
