@@ -4,12 +4,13 @@ import com.procourier.model.Address;
 import com.procourier.model.Buyer;
 import com.procourier.model.Courier;
 import com.procourier.model.Order;
+import com.procourier.model.OrderLine;
 import com.procourier.model.Product;
 import com.procourier.model.Seller;
 import com.procourier.repository.CollectionRepository;
 import spark.Spark;
 
-import java.util.Map;
+import java.util.List;
 
 public final class OrderServiceMain {
 
@@ -24,12 +25,14 @@ public final class OrderServiceMain {
         final Buyer buyer = new Buyer("Cosmin", cosminAddress);
 
         final Address courierAddress = new Address("OT", "Slatina", "Cantemir");
-        final Courier courier = new Courier(1L, "ExpressFan", courierAddress,
+        final Courier courier = new Courier("ExpressFan", courierAddress,
                 5L, 7L);
 
-        final var products = Map.of(new Product(20L, "Jeans", "Men Jeans", 22L), 4);
 
-        final Order order = new Order(6L, seller, buyer, courier, products);
+        final List<OrderLine> products = List.of(new OrderLine(new Product(20L, "Jeans", "Men Jeans", 22L), 4L));
+
+        final Order order = new Order(seller, buyer, courier, products);
+        order.setId(6L);
         repository.put(order);
 
         Spark.port(8082);

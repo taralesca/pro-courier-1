@@ -22,7 +22,7 @@ public final class OrdersHandler implements Route {
         final Long longId = Long.valueOf(id);
 
         final Optional<Order> order = repository.findById(longId);
-        final String info = order.map(o -> o.getId() + " " + o.getBuyer().getName())
+        final String info = order.map(o -> o.getBuyer().getName() + " a cumparat de la " + o.getSeller().getName() + " si coletul a fost expediat prin " + o.getCourier().getCompanyName())
                 .orElse("Not found");
 
         return info;

@@ -1,6 +1,6 @@
 package com.procourier.model;
 
-import java.util.Objects;
+import static java.util.Objects.requireNonNull;
 
 public final class Courier {
     private Long id;
@@ -9,12 +9,14 @@ public final class Courier {
     private Long pricePerDistance;
     private Long pricePerWeight;
 
-    public Courier(Long id, String companyName, Address headquarters, Long pricePerDistance, Long pricePerWeight) {
-        this.id = Objects.requireNonNull(id);
-        this.companyName = Objects.requireNonNull(companyName);
-        this.headquarters = Objects.requireNonNull(headquarters);
-        this.pricePerDistance = Objects.requireNonNull(pricePerDistance);
-        this.pricePerWeight = Objects.requireNonNull(pricePerWeight);
+    public Courier() {
+    }
+
+    public Courier(String companyName, Address headquarters, Long pricePerDistance, Long pricePerWeight) {
+        this.companyName = requireNonNull(companyName);
+        this.headquarters = requireNonNull(headquarters);
+        this.pricePerDistance = requireNonNull(pricePerDistance);
+        this.pricePerWeight = requireNonNull(pricePerWeight);
     }
 
     public String getCompanyName() {
@@ -31,5 +33,15 @@ public final class Courier {
 
     public Long getPricePerWeight() {
         return pricePerWeight;
+    }
+
+    @Override
+    public String toString() {
+        return "Courier{" +
+                "companyName='" + companyName + '\'' +
+                ", headquarters=" + headquarters +
+                ", pricePerDistance=" + pricePerDistance +
+                ", pricePerWeight=" + pricePerWeight +
+                '}';
     }
 }
