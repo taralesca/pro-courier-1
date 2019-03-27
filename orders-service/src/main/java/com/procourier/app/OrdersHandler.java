@@ -1,18 +1,30 @@
 package com.procourier.app;
 
+import com.procourier.model.Order;
+import com.procourier.model.repository.OrderRepository;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
+import java.util.Objects;
+import java.util.Optional;
+
 public final class OrdersHandler implements Route {
-    private OrdersHandler() {
+    private final OrderRepository repository;
 
+    public OrdersHandler(OrderRepository repository) {
+        this.repository = Objects.requireNonNull(repository);
     }
-
-    public static final OrdersHandler INSTANCE = new OrdersHandler();
 
     @Override
     public Object handle(Request request, Response response) throws Exception {
-        return "Hello World";
+        final String id = request.params(":id");
+        final Long longId = Long.valueOf(id);
+
+        final Optional<Order> order = repository.findById(longId);
+        final String info = order.map(o -> o.getId() + " " + o.getBuyer().getName())
+                .orElse("Not found");
+
+        return info;
     }
 }
