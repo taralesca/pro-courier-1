@@ -1,12 +1,12 @@
 package service;
 
 import com.procourier.model.Order;
-import com.procourier.model.Product;
 import dao.OrderDao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 //http://www.learn4master.com/design-pattern/java-singleton-pattern
 
@@ -34,15 +34,15 @@ public class OrderService {
         em.getTransaction().commit();
     }
 
-    public void addProduct(Product product){
-        EntityManager em = emf.createEntityManager();
-        OrderDao orderDao = new OrderDao(em);
+   public Order getOrderById(Long id){
+       EntityManager em = emf.createEntityManager();
+       OrderDao orderDao = new OrderDao(em);
+       return orderDao.getOrderById(id);
+   }
 
-        //orice modif de INSERT, UPDATE, DELETE se face intr-o tranzactie
-        em.getTransaction().begin();
-        orderDao.addProduct(product);
-        em.getTransaction().commit();
-    }
-
-
+   public List<Order> getOrders(){
+       EntityManager em = emf.createEntityManager();
+       OrderDao orderDao = new OrderDao(em);
+       return orderDao.getOrders();
+   }
 }

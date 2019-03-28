@@ -14,13 +14,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.procourier</groupId>
-            <artifactId>core-model</artifactId>
+            <groupId>com.sparkjava</groupId>
+            <artifactId>spark-core</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.sparkjava</groupId>
-            <artifactId>spark-core</artifactId>
+            <groupId>com.procourier</groupId>
+            <artifactId>h2-service</artifactId>
         </dependency>
     </dependencies>
 
