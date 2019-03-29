@@ -83,7 +83,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                ", seller=" + seller +
+                " seller=" + seller +
                 ", buyer=" + buyer +
                 ", courier=" + courier +
                 ", submittedDate=" + submittedDate +

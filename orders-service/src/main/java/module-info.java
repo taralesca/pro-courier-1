@@ -3,6 +3,4 @@ module orders.service {
     requires spark.core;
     requires h2.service;
     requires gson;
-
-
 }
